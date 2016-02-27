@@ -8,8 +8,18 @@ namespace iPodEmulator
 {
     class MP3Editor
     {
-        //save
-        //remove
-        //check something
+        public bool saveLyrics(MP3File file, string lyrics) {
+            return MP3Api.saveLyrics(file.Path, lyrics);
+        }
+
+        public bool saveCover(MP3File file, string coverPath)
+        {
+            return MP3Api.saveCover(file.Path, coverPath);
+        }
+
+        public bool saveTitle(MP3File file, string title)
+        {
+            return MP3Api.saveTitle(file.Path, title);
+        }
     }
 }
