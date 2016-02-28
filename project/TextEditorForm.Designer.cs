@@ -28,13 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.textView = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
+            // 
+            // textView
+            // 
+            this.textView.Location = new System.Drawing.Point(72, 41);
+            this.textView.Name = "textView";
+            this.textView.Size = new System.Drawing.Size(480, 480);
+            this.textView.TabIndex = 0;
+            this.textView.Text = "";
+            this.textView.TextChanged += new System.EventHandler(this.textView_TextChanged);
             // 
             // TextEditorForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(274, 229);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(192F, 192F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.ClientSize = new System.Drawing.Size(599, 561);
+            this.Controls.Add(this.textView);
             this.Name = "TextEditorForm";
             this.Text = "iPod Text Editor";
             this.ResumeLayout(false);
@@ -42,6 +53,8 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.RichTextBox textView;
     }
 }
 

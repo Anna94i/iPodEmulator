@@ -16,7 +16,15 @@ namespace iPodEmulator
         {
             InitializeComponent();
             _config = new TextEditorConfiguration();
+
+            _config.prepareTextView(textView);
         }
+
+        private void textView_TextChanged(object sender, EventArgs e)
+        {
+            _config.calibrateTextView(textView);
+        }
+
 
         private TextEditorConfiguration _config;
     }
