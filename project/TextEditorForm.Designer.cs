@@ -38,7 +38,7 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.artistNameLabel = new System.Windows.Forms.Label();
             this.albumTitleLabel = new System.Windows.Forms.Label();
-            this.titleLabel = new System.Windows.Forms.Label();
+            this.songTitleLabel = new System.Windows.Forms.Label();
             this.ipodEditorMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,7 +62,7 @@
             this.aboutToolStripMenuItem});
             this.ipodEditorMenu.Location = new System.Drawing.Point(0, 0);
             this.ipodEditorMenu.Name = "ipodEditorMenu";
-            this.ipodEditorMenu.Size = new System.Drawing.Size(479, 42);
+            this.ipodEditorMenu.Size = new System.Drawing.Size(479, 40);
             this.ipodEditorMenu.TabIndex = 1;
             this.ipodEditorMenu.Text = "menuStrip1";
             // 
@@ -81,18 +81,21 @@
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.Size = new System.Drawing.Size(269, 38);
             this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(269, 38);
             this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
             this.closeToolStripMenuItem.Size = new System.Drawing.Size(269, 38);
             this.closeToolStripMenuItem.Text = "Close";
+            this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -103,7 +106,7 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(92, 38);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(92, 36);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -112,7 +115,7 @@
             this.artistNameLabel.Dock = System.Windows.Forms.DockStyle.Top;
             this.artistNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.artistNameLabel.ForeColor = System.Drawing.Color.White;
-            this.artistNameLabel.Location = new System.Drawing.Point(0, 42);
+            this.artistNameLabel.Location = new System.Drawing.Point(0, 40);
             this.artistNameLabel.Name = "artistNameLabel";
             this.artistNameLabel.Size = new System.Drawing.Size(479, 58);
             this.artistNameLabel.TabIndex = 2;
@@ -124,24 +127,24 @@
             this.albumTitleLabel.Dock = System.Windows.Forms.DockStyle.Top;
             this.albumTitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.albumTitleLabel.ForeColor = System.Drawing.Color.White;
-            this.albumTitleLabel.Location = new System.Drawing.Point(0, 100);
+            this.albumTitleLabel.Location = new System.Drawing.Point(0, 98);
             this.albumTitleLabel.Name = "albumTitleLabel";
             this.albumTitleLabel.Size = new System.Drawing.Size(479, 45);
             this.albumTitleLabel.TabIndex = 3;
             this.albumTitleLabel.Text = "Eminem";
             this.albumTitleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // titleLabel
+            // songTitleLabel
             // 
-            this.titleLabel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.titleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.titleLabel.ForeColor = System.Drawing.Color.White;
-            this.titleLabel.Location = new System.Drawing.Point(0, 145);
-            this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(479, 53);
-            this.titleLabel.TabIndex = 4;
-            this.titleLabel.Text = "Relapse";
-            this.titleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.songTitleLabel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.songTitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.songTitleLabel.ForeColor = System.Drawing.Color.White;
+            this.songTitleLabel.Location = new System.Drawing.Point(0, 143);
+            this.songTitleLabel.Name = "songTitleLabel";
+            this.songTitleLabel.Size = new System.Drawing.Size(479, 53);
+            this.songTitleLabel.TabIndex = 4;
+            this.songTitleLabel.Text = "Relapse";
+            this.songTitleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // TextEditorForm
             // 
@@ -149,7 +152,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(479, 684);
-            this.Controls.Add(this.titleLabel);
+            this.Controls.Add(this.songTitleLabel);
             this.Controls.Add(this.albumTitleLabel);
             this.Controls.Add(this.artistNameLabel);
             this.Controls.Add(this.textView);
@@ -177,7 +180,7 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.Label artistNameLabel;
         private System.Windows.Forms.Label albumTitleLabel;
-        private System.Windows.Forms.Label titleLabel;
+        private System.Windows.Forms.Label songTitleLabel;
     }
 }
 
