@@ -55,23 +55,23 @@ namespace iPodEmulator
         {
             MP3File file = _editor.File;
             textView.Text = file.Tags.Lyrics;
-            songTitleLabel.Text = file.Tags.Title;
-            albumTitleLabel.Text = file.Tags.Album;
-            artistNameLabel.Text = file.Tags.FirstPerformer;
+            songTitleTextBox.Text = file.Tags.Title;
+            albumTitleTextBox.Text = file.Tags.Album;
+            artistNameTextBox.Text = file.Tags.FirstPerformer;
         }
 
         private void makeClearView()
         {
             textView.Text = "Lyrics goes here";
-            songTitleLabel.Text = "Song title";
-            albumTitleLabel.Text = "Album title";
-            artistNameLabel.Text = "Artist goes here";
+            songTitleTextBox.Text = "Song title";
+            albumTitleTextBox.Text = "Album title";
+            artistNameTextBox.Text = "Artist goes here";
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //TODO: check for null
-            _editor.saveTitle(songTitleLabel.Text);
+            _editor.saveTitle(songTitleTextBox.Text);
             _editor.saveLyrics(textView.Text);
             //TODO: save anothers
         }
@@ -80,6 +80,11 @@ namespace iPodEmulator
         {
             //TODO: check for save
             _editor = null;
+        }
+
+        private void artistNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

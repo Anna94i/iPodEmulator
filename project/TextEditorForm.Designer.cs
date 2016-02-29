@@ -36,9 +36,9 @@
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.artistNameLabel = new System.Windows.Forms.Label();
-            this.albumTitleLabel = new System.Windows.Forms.Label();
-            this.songTitleLabel = new System.Windows.Forms.Label();
+            this.artistNameTextBox = new System.Windows.Forms.TextBox();
+            this.songTitleTextBox = new System.Windows.Forms.TextBox();
+            this.albumTitleTextBox = new System.Windows.Forms.TextBox();
             this.ipodEditorMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -110,41 +110,48 @@
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
-            // artistNameLabel
+            // artistNameTextBox
             // 
-            this.artistNameLabel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.artistNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.artistNameLabel.ForeColor = System.Drawing.Color.White;
-            this.artistNameLabel.Location = new System.Drawing.Point(0, 40);
-            this.artistNameLabel.Name = "artistNameLabel";
-            this.artistNameLabel.Size = new System.Drawing.Size(479, 58);
-            this.artistNameLabel.TabIndex = 2;
-            this.artistNameLabel.Text = "Lose yourself";
-            this.artistNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.artistNameTextBox.BackColor = System.Drawing.Color.Black;
+            this.artistNameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.artistNameTextBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.artistNameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.artistNameTextBox.ForeColor = System.Drawing.Color.White;
+            this.artistNameTextBox.Location = new System.Drawing.Point(0, 40);
+            this.artistNameTextBox.Name = "artistNameTextBox";
+            this.artistNameTextBox.Size = new System.Drawing.Size(479, 34);
+            this.artistNameTextBox.TabIndex = 2;
+            this.artistNameTextBox.Text = "Eminem";
+            this.artistNameTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.artistNameTextBox.TextChanged += new System.EventHandler(this.artistNameTextBox_TextChanged);
             // 
-            // albumTitleLabel
+            // songTitleTextBox
             // 
-            this.albumTitleLabel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.albumTitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.albumTitleLabel.ForeColor = System.Drawing.Color.White;
-            this.albumTitleLabel.Location = new System.Drawing.Point(0, 98);
-            this.albumTitleLabel.Name = "albumTitleLabel";
-            this.albumTitleLabel.Size = new System.Drawing.Size(479, 45);
-            this.albumTitleLabel.TabIndex = 3;
-            this.albumTitleLabel.Text = "Eminem";
-            this.albumTitleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.songTitleTextBox.BackColor = System.Drawing.Color.Black;
+            this.songTitleTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.songTitleTextBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.songTitleTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.songTitleTextBox.ForeColor = System.Drawing.Color.White;
+            this.songTitleTextBox.Location = new System.Drawing.Point(0, 74);
+            this.songTitleTextBox.Name = "songTitleTextBox";
+            this.songTitleTextBox.Size = new System.Drawing.Size(479, 49);
+            this.songTitleTextBox.TabIndex = 3;
+            this.songTitleTextBox.Text = "Lose yourself";
+            this.songTitleTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // songTitleLabel
+            // albumTitleTextBox
             // 
-            this.songTitleLabel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.songTitleLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.songTitleLabel.ForeColor = System.Drawing.Color.White;
-            this.songTitleLabel.Location = new System.Drawing.Point(0, 143);
-            this.songTitleLabel.Name = "songTitleLabel";
-            this.songTitleLabel.Size = new System.Drawing.Size(479, 53);
-            this.songTitleLabel.TabIndex = 4;
-            this.songTitleLabel.Text = "Relapse";
-            this.songTitleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.albumTitleTextBox.BackColor = System.Drawing.Color.Black;
+            this.albumTitleTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.albumTitleTextBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.albumTitleTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.albumTitleTextBox.ForeColor = System.Drawing.Color.White;
+            this.albumTitleTextBox.Location = new System.Drawing.Point(0, 123);
+            this.albumTitleTextBox.Name = "albumTitleTextBox";
+            this.albumTitleTextBox.Size = new System.Drawing.Size(479, 34);
+            this.albumTitleTextBox.TabIndex = 4;
+            this.albumTitleTextBox.Text = "Relapse";
+            this.albumTitleTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // TextEditorForm
             // 
@@ -152,9 +159,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(479, 684);
-            this.Controls.Add(this.songTitleLabel);
-            this.Controls.Add(this.albumTitleLabel);
-            this.Controls.Add(this.artistNameLabel);
+            this.Controls.Add(this.albumTitleTextBox);
+            this.Controls.Add(this.songTitleTextBox);
+            this.Controls.Add(this.artistNameTextBox);
             this.Controls.Add(this.textView);
             this.Controls.Add(this.ipodEditorMenu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -178,9 +185,9 @@
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
-        private System.Windows.Forms.Label artistNameLabel;
-        private System.Windows.Forms.Label albumTitleLabel;
-        private System.Windows.Forms.Label songTitleLabel;
+        private System.Windows.Forms.TextBox artistNameTextBox;
+        private System.Windows.Forms.TextBox songTitleTextBox;
+        private System.Windows.Forms.TextBox albumTitleTextBox;
     }
 }
 
