@@ -25,6 +25,12 @@ namespace iPodEmulator
             _config.calibrateTextView(textView);
         }
 
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutForm form = new AboutForm();
+            form.ShowDialog();
+        }
+
 
         private TextEditorConfiguration _config;
     }
