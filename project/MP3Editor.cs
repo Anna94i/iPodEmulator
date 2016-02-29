@@ -22,13 +22,24 @@ namespace iPodEmulator
             _file = file;
         }
 
-        public bool saveLyrics(string lyrics) {
+        public bool saveLyrics(string lyrics) 
+        {
             return MP3Api.saveLyrics(_file.Path, lyrics);
         }
 
-        public bool saveCover(string coverPath)
+        public bool saveAlbumTitle(string title)
         {
-            return MP3Api.saveCover(_file.Path, coverPath);
+            return MP3Api.saveAlbumTitle(_file.Path, title);
+        }
+
+        public bool saveArtistName(string name)
+        {
+            return MP3Api.saveArtistName(_file.Path, name);
+        }
+
+        public bool saveBlackCover()
+        {
+            return MP3Api.saveCover(_file.Path, "black.jpg");
         }
 
         public bool saveTitle(string title)

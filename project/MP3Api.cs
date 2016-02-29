@@ -17,7 +17,17 @@ namespace iPodEmulator
 
         static public bool saveTitle(string path, string title)
         {
-            return saveTag(path,"title", title);
+            return saveTag(path, "title", title);
+        }
+
+        static public bool saveAlbumTitle(string path, string title)
+        {
+            return saveTag(path, "albumTitle", title);
+        }
+
+        static public bool saveArtistName(string path, string name)
+        {
+            return saveTag(path, "artist", name);
         }
 
         static public bool saveCover(string path, string coverPath)
@@ -38,7 +48,7 @@ namespace iPodEmulator
         }
 
         //sets value to tag
-        //possible tags: lyrics, title, cover
+        //possible tags: lyrics, title, cover, artist, albumTitle
         static private bool saveTag(string path, string tag, string value)
         {
             if (!isFileExists(path))
@@ -59,6 +69,12 @@ namespace iPodEmulator
                             return false;
                         TagLib.Id3v2.AttachedPictureFrame cover = getCoverImage(path);
                         f.Tag.Pictures = new TagLib.IPicture[1] { cover };    
+                        break;
+                    case "artist":
+                        f.Tag.AlbumArtists = new string[1] { value };
+                        break;
+                    case "albumTitle":
+                        f.Tag.Album = value;
                         break;
                 }
             }
