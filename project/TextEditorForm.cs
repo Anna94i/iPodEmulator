@@ -32,9 +32,13 @@ namespace iPodEmulator
         private void makeClearView()
         {
             textView.Text = _config.LyricsPlaceholder;
-            songTitleTextBox.Text = _config.TitlePlaceholder;
             albumTitleTextBox.Text = _config.AlbumPlaceholder;
+            songTitleTextBox.Text = _config.TitlePlaceholder;
             artistNameTextBox.Text = _config.ArtistPlaceholder;
+            iPodScreen.Location = new Point(
+                 this.ClientSize.Width / 2 - iPodScreen.Size.Width / 2,
+                 this.ClientSize.Height / 2 - iPodScreen.Size.Height / 2 - 15);
+            iPodScreen.Anchor = AnchorStyles.None;
         }
 
         //------------------------------Menu---------------------------------
@@ -81,8 +85,8 @@ namespace iPodEmulator
         {
             MP3File file = _editor.File;
             textView.Text = file.Tags.Lyrics;
-            songTitleTextBox.Text = file.Tags.Title;
-            albumTitleTextBox.Text = file.Tags.Album;
+            albumTitleTextBox.Text = file.Tags.Title;
+            songTitleTextBox.Text = file.Tags.Album;
             artistNameTextBox.Text = file.Tags.FirstPerformer;
         }
 
@@ -132,32 +136,32 @@ namespace iPodEmulator
 
         private void songTitleTextBox_Leave(object sender, EventArgs e)
         {
-            _editor.saveTitle(songTitleTextBox.Text);
+            _editor.saveTitle(albumTitleTextBox.Text);
         }
 
         private void albumTitleTextBox_Leave(object sender, EventArgs e)
         {
-            _editor.saveAlbumTitle(albumTitleTextBox.Text);
+            _editor.saveAlbumTitle(songTitleTextBox.Text);
         }
 
         private void textView_Leave(object sender, EventArgs e)
         {
-            _editor.saveLyrics(songTitleTextBox.Text);
+            _editor.saveLyrics(albumTitleTextBox.Text);
         }
 
         private void songTitleTextBox_Click(object sender, EventArgs e)
         {
-            if (songTitleTextBox.Text == _config.TitlePlaceholder)
+            if (albumTitleTextBox.Text == _config.TitlePlaceholder)
             {
-                songTitleTextBox.Text = "";
+                albumTitleTextBox.Text = "";
             }
         }
 
         private void albumTitleTextBox_Click(object sender, EventArgs e)
         {
-            if (albumTitleTextBox.Text == _config.AlbumPlaceholder)
+            if (songTitleTextBox.Text == _config.AlbumPlaceholder)
             {
-                albumTitleTextBox.Text = "";
+                songTitleTextBox.Text = "";
             }
         }
 
@@ -180,6 +184,11 @@ namespace iPodEmulator
         private void textView_TextChanged(object sender, EventArgs e)
         {
             _config.calibrateTextView(textView);
+        }
+
+        private void createToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
