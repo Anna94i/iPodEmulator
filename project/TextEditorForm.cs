@@ -18,15 +18,26 @@ namespace iPodEmulator
         public TextEditorForm()
         {
             InitializeComponent();
+
             _config = new TextEditorConfiguration();
-
+            makeClearView();
             _config.prepareTextView(textView);
+
+            _editor = new MP3Editor();
         }
 
-        private void textView_TextChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Default view
+        /// </summary>
+        private void makeClearView()
         {
-            _config.calibrateTextView(textView);
+            textView.Text = _config.LyricsPlaceholder;
+            songTitleTextBox.Text = _config.TitlePlaceholder;
+            albumTitleTextBox.Text = _config.AlbumPlaceholder;
+            artistNameTextBox.Text = _config.ArtistPlaceholder;
         }
+
+        //------------------------------Menu---------------------------------
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -36,6 +47,11 @@ namespace iPodEmulator
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (_editor != null)
+            {
+                closeToolStripMenuItem_Click(sender, e);
+            }
+
             OpenFileDialog fd = new OpenFileDialog();
             fd.Filter = "Music Files (.mp3)|*.mp3";
             fd.FilterIndex = 1;
@@ -51,7 +67,17 @@ namespace iPodEmulator
             }
         }
 
-        private void loadFileFromEditor() 
+        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_editor.isDefault)
+            {
+                showSaveMessageBox();
+            }
+
+            _editor = null;
+        }
+
+        private void loadFileFromEditor()
         {
             MP3File file = _editor.File;
             textView.Text = file.Tags.Lyrics;
@@ -60,31 +86,100 @@ namespace iPodEmulator
             artistNameTextBox.Text = file.Tags.FirstPerformer;
         }
 
-        private void makeClearView()
+        private void saveWithFileDialog()
         {
-            textView.Text = "Lyrics goes here";
-            songTitleTextBox.Text = "Song title";
-            albumTitleTextBox.Text = "Album title";
-            artistNameTextBox.Text = "Artist goes here";
+            SaveFileDialog fd = new SaveFileDialog();
+            fd.Filter = "Music Files (.mp3)|*.mp3";
+            fd.FilterIndex = 1;
+
+            DialogResult userResult = fd.ShowDialog();
+
+            if (userResult == DialogResult.OK)
+            {
+                _editor.cutFileTo(fd.FileName);
+            } 
+
+            if (userResult == DialogResult.No)
+            {
+                _editor.deleteFile();
+            }
         }
 
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        private void showSaveMessageBox()
         {
-            //TODO: check for null
+            DialogResult result = MessageBox.Show("File is not saved", "Close", MessageBoxButtons.YesNoCancel);
+
+            if (result == System.Windows.Forms.DialogResult.Yes
+                || result == System.Windows.Forms.DialogResult.No)
+            {
+                if (result == System.Windows.Forms.DialogResult.Yes)
+                {
+                    saveWithFileDialog();
+                }
+
+                _editor = new MP3Editor();
+                makeClearView();
+            }
+        }
+
+
+        //----------------------------Textboxes logic----------------------------
+
+        private void artistNameTextBox_Leave(object sender, EventArgs e)
+        {
+            _editor.saveArtistName(artistNameTextBox.Text);
+        }
+
+        private void songTitleTextBox_Leave(object sender, EventArgs e)
+        {
             _editor.saveTitle(songTitleTextBox.Text);
-            _editor.saveLyrics(textView.Text);
-            //TODO: save anothers
         }
 
-        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void albumTitleTextBox_Leave(object sender, EventArgs e)
         {
-            //TODO: check for save
-            _editor = null;
+            _editor.saveAlbumTitle(albumTitleTextBox.Text);
         }
 
-        private void artistNameTextBox_TextChanged(object sender, EventArgs e)
+        private void textView_Leave(object sender, EventArgs e)
         {
+            _editor.saveLyrics(songTitleTextBox.Text);
+        }
 
+        private void songTitleTextBox_Click(object sender, EventArgs e)
+        {
+            if (songTitleTextBox.Text == _config.TitlePlaceholder)
+            {
+                songTitleTextBox.Text = "";
+            }
+        }
+
+        private void albumTitleTextBox_Click(object sender, EventArgs e)
+        {
+            if (albumTitleTextBox.Text == _config.AlbumPlaceholder)
+            {
+                albumTitleTextBox.Text = "";
+            }
+        }
+
+        private void artistNameTextBox_Click(object sender, EventArgs e)
+        {
+            if (artistNameTextBox.Text == _config.ArtistPlaceholder)
+            {
+                artistNameTextBox.Text = "";
+            }
+        }
+
+        private void textView_Click(object sender, EventArgs e)
+        {
+            if (textView.Text == _config.LyricsPlaceholder) 
+            {
+                textView.Text = "";
+            }
+        }
+
+        private void textView_TextChanged(object sender, EventArgs e)
+        {
+            _config.calibrateTextView(textView);
         }
     }
 }

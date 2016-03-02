@@ -28,10 +28,10 @@ namespace iPodEmulator
 
         public MP3File(string path)
         {
+            _path = path; // for save case
             if (!MP3Api.isValidFile(path))
                 return;
 
-            _path = path;
             _tags = TagLib.File.Create(path).Tag;
         }
 

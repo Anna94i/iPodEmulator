@@ -32,7 +32,6 @@
             this.ipodEditorMenu = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,7 +50,9 @@
             this.textView.Size = new System.Drawing.Size(480, 480);
             this.textView.TabIndex = 0;
             this.textView.Text = "";
+            this.textView.Click += new System.EventHandler(this.textView_Click);
             this.textView.TextChanged += new System.EventHandler(this.textView_TextChanged);
+            this.textView.Leave += new System.EventHandler(this.textView_Leave);
             // 
             // ipodEditorMenu
             // 
@@ -70,30 +71,22 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStripMenuItem,
-            this.saveToolStripMenuItem,
             this.closeToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(64, 36);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(64, 38);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(269, 38);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(174, 38);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
-            // 
-            // saveToolStripMenuItem
-            // 
-            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(269, 38);
-            this.saveToolStripMenuItem.Text = "Save";
-            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(269, 38);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(174, 38);
             this.closeToolStripMenuItem.Text = "Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
             // 
@@ -121,9 +114,10 @@
             this.artistNameTextBox.Name = "artistNameTextBox";
             this.artistNameTextBox.Size = new System.Drawing.Size(479, 34);
             this.artistNameTextBox.TabIndex = 2;
-            this.artistNameTextBox.Text = "Eminem";
+            this.artistNameTextBox.Text = "Some text";
             this.artistNameTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.artistNameTextBox.TextChanged += new System.EventHandler(this.artistNameTextBox_TextChanged);
+            this.artistNameTextBox.Click += new System.EventHandler(this.artistNameTextBox_Click);
+            this.artistNameTextBox.Leave += new System.EventHandler(this.artistNameTextBox_Leave);
             // 
             // songTitleTextBox
             // 
@@ -136,8 +130,10 @@
             this.songTitleTextBox.Name = "songTitleTextBox";
             this.songTitleTextBox.Size = new System.Drawing.Size(479, 49);
             this.songTitleTextBox.TabIndex = 3;
-            this.songTitleTextBox.Text = "Lose yourself";
+            this.songTitleTextBox.Text = "Title";
             this.songTitleTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.songTitleTextBox.Click += new System.EventHandler(this.songTitleTextBox_Click);
+            this.songTitleTextBox.Leave += new System.EventHandler(this.songTitleTextBox_Leave);
             // 
             // albumTitleTextBox
             // 
@@ -150,8 +146,10 @@
             this.albumTitleTextBox.Name = "albumTitleTextBox";
             this.albumTitleTextBox.Size = new System.Drawing.Size(479, 34);
             this.albumTitleTextBox.TabIndex = 4;
-            this.albumTitleTextBox.Text = "Relapse";
+            this.albumTitleTextBox.Text = "One more text";
             this.albumTitleTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.albumTitleTextBox.Click += new System.EventHandler(this.albumTitleTextBox_Click);
+            this.albumTitleTextBox.Leave += new System.EventHandler(this.albumTitleTextBox_Leave);
             // 
             // TextEditorForm
             // 
@@ -181,7 +179,6 @@
         private System.Windows.Forms.MenuStrip ipodEditorMenu;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;

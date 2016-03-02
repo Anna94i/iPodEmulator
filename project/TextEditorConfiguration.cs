@@ -29,6 +29,8 @@ namespace iPodEmulator
             
             //set new font
             textView.Font = new Font("Arial", fontSize);
+
+            textView.SelectionStart = textView.Text.Length;
         }
 
         public void calibrateTextView(RichTextBox textView)
@@ -42,8 +44,44 @@ namespace iPodEmulator
             textView.SelectionLength = 0;
             textView.SelectionBackColor = textView.BackColor;
 
-
             textView.SelectionStart = i;
         }
+
+        public string LyricsPlaceholder
+        {
+            get
+            {
+                return _lyricsPlaceholder;
+            }
+        }
+
+        public string TitlePlaceholder
+        {
+            get
+            {
+                return _titlePlaceholder;
+            }
+        }
+
+        public string AlbumPlaceholder
+        {
+            get
+            {
+                return _albumPlaceholder;
+            }
+        }
+
+        public string ArtistPlaceholder
+        {
+            get
+            {
+                return _artistPlaceholder;
+            }
+        }
+
+        private string _lyricsPlaceholder = "Lyrics goes here";
+        private string _titlePlaceholder = "Title";
+        private string _albumPlaceholder = "One more text";
+        private string _artistPlaceholder = "Some text";
     }
 }
