@@ -24,6 +24,16 @@ namespace iPodEmulator
             _config.prepareTextView(textView);
 
             _editor = new MP3Editor();
+
+            hideIpodButtons();
+            hideScreen();
+        }
+
+        private void hideIpodButtons()
+        {
+            //turn on
+            turnOnButtonRectangle = turnOnButton.Bounds;
+            turnOnButton.Visible = false;
         }
 
         /// <summary>
@@ -32,9 +42,9 @@ namespace iPodEmulator
         private void makeClearView()
         {
             textView.Text = _config.LyricsPlaceholder;
-            albumTitleTextBox.Text = _config.AlbumPlaceholder;
-            songTitleTextBox.Text = _config.TitlePlaceholder;
             artistNameTextBox.Text = _config.ArtistPlaceholder;
+            songTitleTextBox.Text = _config.TitlePlaceholder;
+            albumTitleTextBox.Text = _config.AlbumPlaceholder;
             iPodScreen.Location = new Point(
                  this.ClientSize.Width / 2 - iPodScreen.Size.Width / 2,
                  this.ClientSize.Height / 2 - iPodScreen.Size.Height / 2 - 15);
@@ -79,15 +89,17 @@ namespace iPodEmulator
             }
 
             _editor = null;
+
+            hideScreen();
         }
 
         private void loadFileFromEditor()
         {
             MP3File file = _editor.File;
             textView.Text = file.Tags.Lyrics;
-            albumTitleTextBox.Text = file.Tags.Title;
+            artistNameTextBox.Text = file.Tags.Title;
             songTitleTextBox.Text = file.Tags.Album;
-            artistNameTextBox.Text = file.Tags.FirstPerformer;
+            albumTitleTextBox.Text = file.Tags.FirstPerformer;
         }
 
         private void saveWithFileDialog()
@@ -111,7 +123,7 @@ namespace iPodEmulator
 
         private void showSaveMessageBox()
         {
-            DialogResult result = MessageBox.Show("File is not saved", "Close", MessageBoxButtons.YesNoCancel);
+            DialogResult result = MessageBox.Show("File is not saved. Save it for you?", "Close", MessageBoxButtons.YesNoCancel);
 
             if (result == System.Windows.Forms.DialogResult.Yes
                 || result == System.Windows.Forms.DialogResult.No)
@@ -136,32 +148,32 @@ namespace iPodEmulator
 
         private void songTitleTextBox_Leave(object sender, EventArgs e)
         {
-            _editor.saveTitle(albumTitleTextBox.Text);
+            _editor.saveTitle(songTitleTextBox.Text);
         }
 
         private void albumTitleTextBox_Leave(object sender, EventArgs e)
         {
-            _editor.saveAlbumTitle(songTitleTextBox.Text);
+            _editor.saveAlbumTitle(albumTitleTextBox.Text);
         }
 
         private void textView_Leave(object sender, EventArgs e)
         {
-            _editor.saveLyrics(albumTitleTextBox.Text);
+            _editor.saveLyrics(textView.Text);
         }
 
         private void songTitleTextBox_Click(object sender, EventArgs e)
         {
-            if (albumTitleTextBox.Text == _config.TitlePlaceholder)
+            if (songTitleTextBox.Text == _config.TitlePlaceholder)
             {
-                albumTitleTextBox.Text = "";
+                songTitleTextBox.Text = "";
             }
         }
 
         private void albumTitleTextBox_Click(object sender, EventArgs e)
         {
-            if (songTitleTextBox.Text == _config.AlbumPlaceholder)
+            if (albumTitleTextBox.Text == _config.AlbumPlaceholder)
             {
-                songTitleTextBox.Text = "";
+                albumTitleTextBox.Text = "";
             }
         }
 
@@ -188,7 +200,49 @@ namespace iPodEmulator
 
         private void createToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            showScreen();
         }
+
+        //----------------------------ipod buttons logic------------------------------
+
+        private void turnOnButton_Click(object sender, EventArgs e)
+        {
+            if (textView.Visible)
+                hideScreen();
+            else
+                showScreen();
+        }
+
+        private void switchScreen()
+        {
+            bool isVisible = !textView.Visible;
+            artistNameTextBox.Visible = isVisible;
+            songTitleTextBox.Visible = isVisible;
+            albumTitleTextBox.Visible = isVisible;
+            textView.Visible = isVisible;
+        }
+
+        private void hideScreen()
+        {
+            Color backgroundColor = Color.FromArgb(102, 102, 102);
+            iPodScreen.BackColor = backgroundColor;
+            switchScreen();
+        }
+
+        private void showScreen()
+        {
+            iPodScreen.BackColor = Color.Black;
+            switchScreen();
+        }
+
+
+        private void ipodPicture_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (turnOnButtonRectangle.Contains(new Point(e.X, e.Y)))
+                turnOnButton_Click(turnOnButton, new EventArgs());
+        }
+
+        private Rectangle turnOnButtonRectangle;
+
     }
 }
