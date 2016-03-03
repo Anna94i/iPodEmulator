@@ -62,7 +62,7 @@ namespace iPodEmulator
                         f.Tag.Lyrics = value;
                         break;
                     case "title":
-                        f.Tag.Lyrics = value;
+                        f.Tag.Title = value;
                         break;
                     case "cover":
                         if (!isFileExists(value))
@@ -77,6 +77,7 @@ namespace iPodEmulator
                         f.Tag.Album = value;
                         break;
                 }
+                f.Save();
             }
 
             return true;

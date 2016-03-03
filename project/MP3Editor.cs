@@ -9,6 +9,14 @@ namespace iPodEmulator
 {
     class MP3Editor
     {
+        public bool needBeSaved
+        {
+            get
+            {
+                return _needBeSaved && _isDefault;
+            }
+        }
+
         public bool isDefault
         {
             get
@@ -29,54 +37,64 @@ namespace iPodEmulator
         {
             _isDefault = true;
             _file = new MP3File(makeDefaultFileCopy());
+            _needBeSaved = false;
         }
 
         public MP3Editor(MP3File file)
         {
             _isDefault = false;
             _file = file;
+            _needBeSaved = false;
         }
 
 
         //--------------------------save part---------------------------
         public bool saveLyrics(string lyrics) 
         {
+            _needBeSaved = true;
             return MP3Api.saveLyrics(_file.Path, lyrics);
         }
 
         public bool saveAlbumTitle(string title)
         {
+            _needBeSaved = true;
             return MP3Api.saveAlbumTitle(_file.Path, title);
         }
 
         public bool saveArtistName(string name)
         {
+            _needBeSaved = true;
             return MP3Api.saveArtistName(_file.Path, name);
         }
 
         public bool saveBlackCover()
         {
+            _needBeSaved = true;
             return MP3Api.saveCover(_file.Path, "black.jpg");
         }
 
         public bool saveTitle(string title)
         {
+            _needBeSaved = true;
             return MP3Api.saveTitle(_file.Path, title);
         }
 
 
         //-----------------------------------file operations--------------------
 
-        public void deleteFile()
-        {
-            System.IO.File.Delete(_file.Path);
-        }
-
         public void cutFileTo(string path)
         {
             System.IO.File.Copy(_file.Path, path, true);
-            deleteFile();
+            deleteTempFile();
             _file = new MP3File(path);
+            _isDefault = false;
+            _needBeSaved = false;
+        }
+
+        public void deleteTempFile()
+        {
+            if (isDefault)
+                System.IO.File.Delete(_file.Path);
         }
 
         private string getDefaultSongPath()
@@ -95,7 +113,6 @@ namespace iPodEmulator
 
         private string makeDefaultFileCopy()
         {
-            
             string targetDir = Path.GetTempPath();
             string resPath = System.IO.Path.Combine(targetDir, _defaultSongName);
             using (System.IO.Stream stream = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream(getDefaultSongPath()))
@@ -115,6 +132,7 @@ namespace iPodEmulator
 
         private MP3File _file;
         private bool _isDefault;
+        private bool _needBeSaved; //file was modified
 
         private const string _defaultSongName = "song.mp3";
     }

@@ -26,7 +26,6 @@ namespace iPodEmulator
             _editor = new MP3Editor();
 
             hideIpodButtons();
-            hideScreen();
         }
 
         private void hideIpodButtons()
@@ -61,10 +60,7 @@ namespace iPodEmulator
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (_editor != null)
-            {
-                closeToolStripMenuItem_Click(sender, e);
-            }
+            closeToolStripMenuItem_Click(sender, e);
 
             OpenFileDialog fd = new OpenFileDialog();
             fd.Filter = "Music Files (.mp3)|*.mp3";
@@ -77,18 +73,17 @@ namespace iPodEmulator
             if (userResult == DialogResult.OK)
             {
                 _editor = new MP3Editor(new MP3File(fd.FileName));
+                showScreen();
                 loadFileFromEditor();
             }
         }
 
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (_editor.isDefault)
+            if (_editor.needBeSaved)
             {
                 showSaveMessageBox();
             }
-
-            _editor = null;
 
             hideScreen();
         }
@@ -97,9 +92,29 @@ namespace iPodEmulator
         {
             MP3File file = _editor.File;
             textView.Text = file.Tags.Lyrics;
-            artistNameTextBox.Text = file.Tags.Title;
-            songTitleTextBox.Text = file.Tags.Album;
-            albumTitleTextBox.Text = file.Tags.FirstPerformer;
+            artistNameTextBox.Text = file.Tags.FirstPerformer;
+            songTitleTextBox.Text = file.Tags.Title;
+            albumTitleTextBox.Text = file.Tags.Album;
+        }
+
+        private void saveAll()
+        {
+
+            _editor.saveAlbumTitle(albumTitleTextBox.Text);
+            _editor.saveArtistName(artistNameTextBox.Text);
+            _editor.saveBlackCover();
+            _editor.saveLyrics(textView.Text);
+            _editor.saveTitle(songTitleTextBox.Text);
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_editor.isDefault)
+            {
+                saveWithFileDialog();
+            }
+
+            saveAll();
         }
 
         private void saveWithFileDialog()
@@ -112,12 +127,13 @@ namespace iPodEmulator
 
             if (userResult == DialogResult.OK)
             {
+                saveAll();
                 _editor.cutFileTo(fd.FileName);
             } 
 
             if (userResult == DialogResult.No)
             {
-                _editor.deleteFile();
+                _editor.deleteTempFile();
             }
         }
 
@@ -201,6 +217,8 @@ namespace iPodEmulator
         private void createToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showScreen();
+            _editor = new MP3Editor();
+            makeClearView();
         }
 
         //----------------------------ipod buttons logic------------------------------
@@ -215,24 +233,26 @@ namespace iPodEmulator
 
         private void switchScreen()
         {
-            bool isVisible = !textView.Visible;
-            artistNameTextBox.Visible = isVisible;
-            songTitleTextBox.Visible = isVisible;
-            albumTitleTextBox.Visible = isVisible;
-            textView.Visible = isVisible;
+            bool visibleValue = !textView.Visible;
+            artistNameTextBox.Visible = visibleValue;
+            songTitleTextBox.Visible = visibleValue;
+            albumTitleTextBox.Visible = visibleValue;
+            textView.Visible = visibleValue;
         }
 
         private void hideScreen()
         {
             Color backgroundColor = Color.FromArgb(102, 102, 102);
             iPodScreen.BackColor = backgroundColor;
-            switchScreen();
+            if (textView.Visible)
+                switchScreen();
         }
 
         private void showScreen()
         {
             iPodScreen.BackColor = Color.Black;
-            switchScreen();
+            if (!textView.Visible)
+                switchScreen();
         }
 
 
@@ -243,6 +263,11 @@ namespace iPodEmulator
         }
 
         private Rectangle turnOnButtonRectangle;
+
+        private void TextEditorForm_Shown(object sender, EventArgs e)
+        {
+            hideScreen();
+        }
 
     }
 }

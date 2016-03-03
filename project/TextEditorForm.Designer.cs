@@ -42,6 +42,7 @@
             this.turnOnButton = new System.Windows.Forms.Button();
             this.iPodScreen = new System.Windows.Forms.Panel();
             this.ipodPicture = new System.Windows.Forms.PictureBox();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ipodEditorMenu.SuspendLayout();
             this.textEditorPanel.SuspendLayout();
             this.iPodScreen.SuspendLayout();
@@ -71,7 +72,7 @@
             this.aboutToolStripMenuItem});
             this.ipodEditorMenu.Location = new System.Drawing.Point(0, 0);
             this.ipodEditorMenu.Name = "ipodEditorMenu";
-            this.ipodEditorMenu.Size = new System.Drawing.Size(656, 40);
+            this.ipodEditorMenu.Size = new System.Drawing.Size(656, 42);
             this.ipodEditorMenu.TabIndex = 1;
             this.ipodEditorMenu.Text = "menuStrip1";
             // 
@@ -80,9 +81,10 @@
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createToolStripMenuItem,
             this.openToolStripMenuItem,
+            this.saveToolStripMenuItem,
             this.closeToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(64, 36);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(64, 38);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // createToolStripMenuItem
@@ -168,9 +170,9 @@
             this.textEditorPanel.Controls.Add(this.iPodScreen);
             this.textEditorPanel.Controls.Add(this.ipodPicture);
             this.textEditorPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textEditorPanel.Location = new System.Drawing.Point(0, 40);
+            this.textEditorPanel.Location = new System.Drawing.Point(0, 42);
             this.textEditorPanel.Name = "textEditorPanel";
-            this.textEditorPanel.Size = new System.Drawing.Size(656, 619);
+            this.textEditorPanel.Size = new System.Drawing.Size(656, 617);
             this.textEditorPanel.TabIndex = 5;
             // 
             // turnOnButton
@@ -209,11 +211,18 @@
             this.ipodPicture.InitialImage = null;
             this.ipodPicture.Location = new System.Drawing.Point(0, 0);
             this.ipodPicture.Name = "ipodPicture";
-            this.ipodPicture.Size = new System.Drawing.Size(656, 619);
+            this.ipodPicture.Size = new System.Drawing.Size(656, 617);
             this.ipodPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.ipodPicture.TabIndex = 5;
             this.ipodPicture.TabStop = false;
             this.ipodPicture.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ipodPicture_MouseClick);
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(269, 38);
+            this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // TextEditorForm
             // 
@@ -227,6 +236,7 @@
             this.MainMenuStrip = this.ipodEditorMenu;
             this.Name = "TextEditorForm";
             this.Text = "iPod Text Editor";
+            this.Shown += new System.EventHandler(this.TextEditorForm_Shown);
             this.ipodEditorMenu.ResumeLayout(false);
             this.ipodEditorMenu.PerformLayout();
             this.textEditorPanel.ResumeLayout(false);
@@ -254,6 +264,7 @@
         private System.Windows.Forms.PictureBox ipodPicture;
         private System.Windows.Forms.Panel iPodScreen;
         private System.Windows.Forms.Button turnOnButton;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
     }
 }
 
