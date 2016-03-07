@@ -8,31 +8,41 @@ using System.IO;
 
 namespace iPodEmulator
 {
+
+    enum MP3APITag
+    {
+        Lyrics,
+        Title, 
+        Artist, 
+        Cover,
+        AlbumTitle
+    }
+
     //low-level API
     static class MP3Api
     {
         static public bool saveLyrics(string path, string lyrics) {
-            return saveTag(path, "lyrics", lyrics);
+            return saveTag(path, MP3APITag.Lyrics, lyrics);
         }
 
         static public bool saveTitle(string path, string title)
         {
-            return saveTag(path, "title", title);
+            return saveTag(path, MP3APITag.Title, title);
         }
 
         static public bool saveAlbumTitle(string path, string title)
         {
-            return saveTag(path, "albumTitle", title);
+            return saveTag(path, MP3APITag.AlbumTitle, title);
         }
 
         static public bool saveArtistName(string path, string name)
         {
-            return saveTag(path, "artist", name);
+            return saveTag(path, MP3APITag.Artist, name);
         }
 
         static public bool saveCover(string path, string coverPath)
         {
-            return saveTag(path, "cover", coverPath);
+            return saveTag(path, MP3APITag.Cover, coverPath);
         }
 
         static public bool isValidFile(string path)
@@ -48,8 +58,7 @@ namespace iPodEmulator
         }
 
         //sets value to tag
-        //possible tags: lyrics, title, cover, artist, albumTitle
-        static private bool saveTag(string path, string tag, string value)
+        static private bool saveTag(string path, MP3APITag tag, string value)
         {
             if (!isFileExists(path))
                 return false;
@@ -58,22 +67,22 @@ namespace iPodEmulator
             {
                 switch (tag)
                 {
-                    case "lyrics":
+                    case MP3APITag.Lyrics:
                         f.Tag.Lyrics = value;
                         break;
-                    case "title":
+                    case MP3APITag.Title:
                         f.Tag.Title = value;
                         break;
-                    case "cover":
+                    case MP3APITag.Cover:
                         if (!isFileExists(value))
                             return false;
                         TagLib.Id3v2.AttachedPictureFrame cover = getCoverImage(path);
                         f.Tag.Pictures = new TagLib.IPicture[1] { cover };    
                         break;
-                    case "artist":
+                    case MP3APITag.Artist:
                         f.Tag.AlbumArtists = new string[1] { value };
                         break;
-                    case "albumTitle":
+                    case MP3APITag.AlbumTitle:
                         f.Tag.Album = value;
                         break;
                 }
