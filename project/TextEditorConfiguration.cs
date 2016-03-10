@@ -8,7 +8,7 @@ using System.Drawing;
 
 namespace iPodEmulator
 {
-    class TextEditorConfiguration
+    public class TextEditorConfiguration
     {
         public void prepareTextView(RichTextBox textView) {
             //margins

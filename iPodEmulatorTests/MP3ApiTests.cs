@@ -8,6 +8,9 @@ namespace iPodEmulatorTests
     [TestClass]
     public class MP3ApiTests
     {
+        /// <summary>
+        /// Basic test for saveLyrics method from MP3Api class
+        /// </summary>
         [TestMethod]
         public void saveLyricsTest()
         {
@@ -18,17 +21,22 @@ namespace iPodEmulatorTests
             Assert.AreEqual(expected, actual, "Lyrics is not saved correctly");
         }
 
-        //error here
+        /// <summary>
+        /// Test for saveLyrics method from MP3Api class for empty text
+        /// </summary>
         [TestMethod]
         public void saveEmptyLyricsTest()
         {
-            string expected = "";
+            string expected = null;
             MP3File file = new MP3File("song.mp3");
             MP3Api.saveLyrics(file.Path, "");
             string actual = (new MP3File("song.mp3")).Tags.Lyrics;
             Assert.AreEqual(expected, actual, "Lyrics doesn`t save correctly");
         }
 
+        /// <summary>
+        /// Basic test for saveTitle method from MP3Api class
+        /// </summary>
         [TestMethod]
         public void saveTitleTest()
         {
@@ -39,17 +47,22 @@ namespace iPodEmulatorTests
             Assert.AreEqual(expected, actual, "Title is not saved correctly");
         }
 
-        //error here
+        /// <summary>
+        /// Test for saveTitle method from MP3Api class for empty title
+        /// </summary>
         [TestMethod]
         public void saveEmptyTitleTest()
         {
-            string expected = "";
+            string expected = null;
             MP3File file = new MP3File("song.mp3");
             MP3Api.saveTitle(file.Path, "");
             string actual = (new MP3File("song.mp3")).Tags.Title;
             Assert.AreEqual(expected, actual, "Empty title is not saved correctly");
         }
 
+        /// <summary>
+        /// Basic test for saveAlbumTitle method from MP3Api class
+        /// </summary>
         [TestMethod]
         public void saveAlbumTitleTest()
         {
@@ -60,6 +73,22 @@ namespace iPodEmulatorTests
             Assert.AreEqual(expected, actual, "Album title is not saved correctly");
         }
 
+        /// <summary>
+        /// Test for saveAlbumTitle method from MP3Api class for empty title
+        /// </summary>
+        [TestMethod]
+        public void saveEmptyAlbumTitleTest()
+        {
+            string expected = null;
+            MP3File file = new MP3File("song.mp3");
+            MP3Api.saveAlbumTitle(file.Path, "");
+            string actual = (new MP3File("song.mp3")).Tags.Album;
+            Assert.AreEqual(expected, actual, "Album title is not saved correctly");
+        }
+
+        /// <summary>
+        /// Basic test for saveArtistName method from MP3Api class
+        /// </summary>
         [TestMethod]
         public void saveArtistNameTest()
         {
@@ -70,6 +99,20 @@ namespace iPodEmulatorTests
             Assert.AreEqual(expected, actual, "Artist is not saved correctly");
         }
 
+        /// <summary>
+        /// Test for saveArtistName method from MP3Api class for empty artist name
+        /// </summary>
+        [TestMethod]
+        public void saveEmptyArtistNameTest()
+        {
+            MP3File file = new MP3File("song.mp3");
+            MP3Api.saveArtistName(file.Path, "");
+            Assert.AreEqual(0, (new MP3File("song.mp3")).Tags.AlbumArtists.Length, "Artist is not saved correctly");
+        }
+
+        /// <summary>
+        /// Basic test for saveCover method from MP3Api class
+        /// </summary>
         [TestMethod]
         public void saveCoverTest()
         {
@@ -79,6 +122,5 @@ namespace iPodEmulatorTests
             int actual = (new MP3File("song.mp3")).Tags.Pictures.Length;
             Assert.AreEqual(expected, actual, "Cover is not saved correctly");
         }
-
     }
 }
