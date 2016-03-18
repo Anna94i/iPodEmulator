@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace iPodEmulator
 {
-    class MP3File
+    public class MP3File
     {
         public string Path
         {

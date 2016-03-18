@@ -7,7 +7,7 @@ using System.IO;
 
 namespace iPodEmulator
 {
-    class MP3Editor
+    public class MP3Editor
     {
         public bool needBeSaved
         {

@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iPodEmulator", "iPodEmulator.csproj", "{ED79A147-1DFB-4CC1-AF96-E1AE4CEF4C91}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iPodEmulatorTests", "..\iPodEmulatorTests\iPodEmulatorTests.csproj", "{139C9274-EC47-4CA9-884D-DB1137CE6A8E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{ED79A147-1DFB-4CC1-AF96-E1AE4CEF4C91}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED79A147-1DFB-4CC1-AF96-E1AE4CEF4C91}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED79A147-1DFB-4CC1-AF96-E1AE4CEF4C91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{139C9274-EC47-4CA9-884D-DB1137CE6A8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{139C9274-EC47-4CA9-884D-DB1137CE6A8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{139C9274-EC47-4CA9-884D-DB1137CE6A8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{139C9274-EC47-4CA9-884D-DB1137CE6A8E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

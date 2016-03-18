@@ -19,7 +19,7 @@ namespace iPodEmulator
     }
 
     //low-level API
-    static class MP3Api
+    public static class MP3Api
     {
         static public bool saveLyrics(string path, string lyrics) {
             return saveTag(path, MP3APITag.Lyrics, lyrics);
