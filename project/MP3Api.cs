@@ -80,7 +80,7 @@ namespace iPodEmulator
                         f.Tag.Pictures = new TagLib.IPicture[1] { cover };    
                         break;
                     case MP3APITag.Artist:
-                        f.Tag.AlbumArtists = new string[1] { value };
+                        f.Tag.Performers = new string[1] { value };
                         break;
                     case MP3APITag.AlbumTitle:
                         f.Tag.Album = value;
