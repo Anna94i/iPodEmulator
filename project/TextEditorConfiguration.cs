@@ -27,8 +27,10 @@ namespace iPodEmulator
             // get new size
             float fontSize = ((textViewLineSymbolsCount * currSize) / ipodLineSymbolsCount) * textConst;
             
+
             //set new font
-            textView.Font = new Font("Arial", fontSize);
+            goodFont = new Font("Arial", fontSize);
+            textView.Font = goodFont;
 
             textView.SelectionStart = textView.Text.Length;
         }
@@ -45,6 +47,14 @@ namespace iPodEmulator
             textView.SelectionBackColor = textView.BackColor;
 
             textView.SelectionStart = i;
+
+            if (goodFont != null) {
+                textView.Font = goodFont;
+
+                //winforms bag. If new forecolor is equal to old the text will not be redraw.
+                textView.ForeColor = Color.Gold;
+                textView.ForeColor = Color.White;
+            }
         }
 
         public string LyricsPlaceholder
@@ -78,6 +88,9 @@ namespace iPodEmulator
                 return _artistPlaceholder;
             }
         }
+
+        //good font for view
+        private Font goodFont = null;
 
         private string _lyricsPlaceholder = "Lyrics goes here";
         private string _titlePlaceholder = "Title";
